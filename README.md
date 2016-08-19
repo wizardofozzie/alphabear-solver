@@ -1,5 +1,8 @@
 # Alphabear Solver
 
+*Modified from [here](https://github.com/tom-sherman/alphabear-solver) for use with iOS Pythonista 3*
+
+
 A simple python script that is intended to be used to solve game boards on the 
 mobile game 
 [Alphabear](https://play.google.com/store/apps/details?id=com.spryfox.alphabear&hl=en) by Spry Fox.
@@ -14,17 +17,18 @@ few changes from the Alphabear changelogs.
 
 ## Usage
 
-To use this script, you'll need Python 3 installed.
+To use this script, you'll need Pythonista 3 installed.
 
-1. Make sure you have a tone of words in `dictionary.txt`, one word per line. A 
+1. Make sure you have a ton of words in `dictionary.txt`, one word per line. A 
 wordlist is included here but you can modify it if you want.
-2. Run `hashdict.py`
+2. Run `hashdict.py` to create a hashmap `map.json`
 3. Run `solver.py`
 
 Everytime you change/update the dictionary, you'll need to rerun `hashdict.py`
 
 ## Todo
 
+* Fix word length filtering, based on [this](http://stackoverflow.com/a/5521619)
 * Read letters from game input.
 * Calculate the actual in game points.
 
