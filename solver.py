@@ -34,7 +34,6 @@ def main():
         if "0" in letters:
             break
         else:
-
             # Print letters so user can check the inputs
             print("\nYour letters are")
             for L in letters:
@@ -64,6 +63,9 @@ def get_letters(minlen=1, turns=False):
 
         letterssorted = []
         if valid_syntax(arg):
+            
+            with open("lastsearch.txt", "w") as fo:
+                fo.write(arg)
             # Gets a list of letter groups
             lettergroups = arg.split(";")
             # Each letter group is sorted
