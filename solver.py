@@ -12,6 +12,8 @@ from collections import defaultdict
 import copy
 
 MINLEN = 5
+#TODO: minlen according to http://stackoverflow.com/a/5521619
+
 
 def main():
     dmap = hashdict.read_json("map.json")
