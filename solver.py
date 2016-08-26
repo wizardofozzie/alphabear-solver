@@ -51,53 +51,39 @@ def main():
 def get_letters(minlen=1, turns=False):
     """Returns a sanitised, sorted list of letters.
 
-    :param turns: (bool) Whether the user should input them amount of turns.
+    :param turns: (bool) Whether the user should input the amount of turns.
     :return letters:
     """
 
     if turns:
-        print("Syntax: [1];[2];[3];...[n] \n"
-              "Where [1], [2] ... [n] are a list of letters (no spaces) with "
-              "that amount of turns left.")
+        # use GUI to get letters grouped by turn number (; delimited)
         arg = turns_popup()
 
         letterssorted = []
         if valid_syntax(arg):
-            
+            # save search letters to txt in case Pythonista crashes
             with open("lastsearch.txt", "w") as fo:
                 fo.write(arg)
-            # Gets a list of letter groups
-            lettergroups = arg.split(";")
-            # Each letter group is sorted
 
-            # Sort the groups
-            for letters in lettergroups:
-                letterssorted.append(sorted(letters))
-
-            return letterssorted
+            lettergroups = arg.split(";")    # Gets a list of letter groups
+            # return sorted letters
+            return [sorted((letters) for letters in lettergroups)]
         else:
-            letterssorted.append("0")
-            return letterssorted
+            # break using '0'
+            return ['0']
 
     else:
         s = input("Input letters (no spaces): ")
-
-        letters = []
-        for letter in sorted(s):
-            letters.append(letter)
-
-        return letters
+        return [letter for letter in sorted(s)]
 
 
-def get_matches(dmap, signatures):
-    """
-    """
-
+def get_matches(dmap, sigs):
+    """Scan through dmap with list of signatures"""
     matches = []
 
-    for signature in signatures:
+    for sig in sigs:
         try:
-            matches = matches + dmap[signature]
+            matches = matches + dmap[sig]
         except KeyError:
             pass
 
@@ -106,15 +92,17 @@ def get_matches(dmap, signatures):
 
 def print_matches(matches):
     print("\nLength | Words\n-------|------")
-    for match in matches:
+    for match in matches[-50:]:
         print("{0:6} | {1}".format(len(match), match))
 
 
 def get_signatures(letters, minlen=1):
     """Generates all possible unique combination of the list of letters provided."""
-
+    import string
+    
     signatures = []
     minlen = len(letters) if minlen >= len(letters) else 1 if minlen < 1 else minlen
+    
     for i in range(minlen, len(letters)):
 
         # Generates all sets k
