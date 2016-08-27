@@ -17,9 +17,9 @@ MINLEN = 5
 
 def main():
     dmap = hashdict.read_json("map.json")
-    global MINLEN
-    MINLEN = int(input("Min word len"))
-    minlen = MINLEN
+    #global MINLEN
+    #MINLEN = int(input("Min word len"))
+    #minlen = MINLEN
     first_loop = True
     # Loops until user enters the character "0"
     while True:
@@ -29,15 +29,14 @@ def main():
                 s = input("Input turns? (y/n)")
                 turns = s in ("y", "Y")
         
-        letters = get_letters(minlen, turns)
+        letters = get_letters(turns)
 
         if "0" in letters:
             break
         else:
             # Print letters so user can check the inputs
             print("\nYour letters are")
-            for L in letters:
-                print(L, end=" ")
+            print(" ".join(L))
             print()
 
             if turns:
